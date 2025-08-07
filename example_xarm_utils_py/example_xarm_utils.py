@@ -7,7 +7,6 @@ class ExampleXArmUtils:
         node = Node("example_xarm_utils")
 
         self.xarm = XArmUtils(node, "xarm6")
-        # self.xarm = XArmUtils("xarm6")
         self.target_joint_values = [
             [0.916, 0.724, -1.700, 0.001, 0.977, -0.67],
             [0.916, -0.724, -1.700, 0.001, 0.977, -0.67],
