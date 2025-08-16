@@ -24,7 +24,8 @@ class ExampleXArmUtils:
             else:
                 self.xarm.set_planning_pipeline("stomp")
             self.xarm.set_joint_value_target(joint_values)
-            if self.xarm.plan():
+            success, plan, _, _ = self.xarm.plan()
+            if success:
                 print(f"Plan success for joint values: {joint_values}")
                 if self.xarm.execute():
                     print("Execution success")
