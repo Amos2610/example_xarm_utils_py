@@ -27,7 +27,6 @@ class ExampleXArmUtils:
                 print("Failed to move to initial position with air cut")
                 return
 
-            self.xarm.force_set_start_state_from_current_array()
             self.count += 1
             if self.count % 2 == 0:
                 self.xarm.set_planning_pipeline("ompl")
@@ -48,7 +47,6 @@ class ExampleXArmUtils:
         rclpy.shutdown()
 
 def main():
-    rclpy.init()
     example = ExampleXArmUtils()
     example.run()
 
