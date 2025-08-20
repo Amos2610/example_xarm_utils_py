@@ -18,6 +18,16 @@ class ExampleXArmUtils:
     def run(self):
         self.count = 0
         for joint_values in self.target_joint_values:
+            # Air Cutで初期位置に移動
+            success = self.xarm.xarm6_air_cut(
+                [0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+                time_sec=2.0, tolerance=0.005, timeout_sec=10.0
+            )
+            if not success:
+                print("Failed to move to initial position with air cut")
+                return
+
+            self.xarm.force_set_start_state_from_current_array()
             self.count += 1
             if self.count % 2 == 0:
                 self.xarm.set_planning_pipeline("ompl")
@@ -38,6 +48,7 @@ class ExampleXArmUtils:
         rclpy.shutdown()
 
 def main():
+    rclpy.init()
     example = ExampleXArmUtils()
     example.run()
 
